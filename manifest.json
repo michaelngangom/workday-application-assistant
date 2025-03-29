@@ -1,0 +1,42 @@
+{
+  "manifest_version": 3,
+  "name": "Workday Application Assistant",
+  "description": "Automatically fill out job application forms on Workday",
+  "version": "1.0",
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.svg",
+      "48": "icons/icon48.svg",
+      "128": "icons/icon128.svg"
+    }
+  },
+  "permissions": [
+    "storage",
+    "activeTab",
+    "scripting"
+  ],
+  "host_permissions": [
+    "*://*.workday.com/*",
+    "*://*.myworkday.com/*",
+    "*://*.myworkdayjobs.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.workday.com/*",
+        "*://*.myworkday.com/*",
+        "*://*.myworkdayjobs.com/*"
+      ],
+      "js": ["content.js", "workday-field-mappings.js"]
+    }
+  ],
+  "icons": {
+    "16": "icons/icon16.svg",
+    "48": "icons/icon48.svg",
+    "128": "icons/icon128.svg"
+  }
+}
